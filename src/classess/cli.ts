@@ -2,7 +2,7 @@ import readline, { ReadLine } from 'readline'
 
 export default class CLI {
 
-    private rl: ReadLine
+    public rl: ReadLine
 
     constructor() {
         this.rl = readline.createInterface({
