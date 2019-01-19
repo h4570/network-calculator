@@ -3,6 +3,8 @@ import NetworkCalcsDto from '../dtos/networkCalcsDto'
 export default class Network {
 
     public static getCalcs(ipv4: string, mask: number): NetworkCalcsDto {
+        if (!this.maskIsValid(mask)) { return new NetworkCalcsDto('illegal_mask') }
+
         const result = new NetworkCalcsDto()
         result.network = this.calcNetwork(ipv4, mask)
         result.broadcast = this.calcBroadcast(ipv4, mask)
@@ -29,7 +31,7 @@ export default class Network {
     }
 
     public static maskIsValid(mask: number) {
-        return mask
+        return mask < 33
     }
 
 }
