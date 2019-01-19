@@ -11,19 +11,19 @@ export default class Network {
         return result
     }
 
-    private static calcNetwork(ipv4: string, mask: string): string {
+    public static calcNetwork(ipv4: string, mask: string): string {
         return '1'
     }
 
-    private static calcBroadcast(ipv4: string, mask: string): string {
+    public static calcBroadcast(ipv4: string, mask: string): string {
         return '1'
     }
 
-    private static calcFirstAddress(ipv4: string, mask: string): string {
+    public static calcFirstAddress(ipv4: string, mask: string): string {
         return '1'
     }
 
-    private static calcLastAddress(ipv4: string, mask: string): string {
+    public static calcLastAddress(ipv4: string, mask: string): string {
         return '1'
     }
 
