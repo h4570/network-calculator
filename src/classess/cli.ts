@@ -1,22 +1,16 @@
-import readline, { ReadLine } from 'readline'
+// tslint:disable-next-line:no-var-requires
+const readlineSync = require('readline-sync')
 
 export default class CLI {
 
-    public rl: ReadLine
-
-    constructor() {
-        this.rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout
-        })
+    public static getIPV4Address(test: boolean = false): string {
+        if (test) { return 'not_testable' }
+        return readlineSync.question('Enter IPV4 Address: ')
     }
 
-    public getIPV4Address(): string {
-        return 'not_implemented'
-    }
-
-    public getSubnetMask(): string {
-        return 'not_implemented'
+    public static getSubnetMask(test: boolean = false): string {
+        if (test) { return 'not_testable' }
+        return readlineSync.question('Enter subnet mask: ')
     }
 
 }
