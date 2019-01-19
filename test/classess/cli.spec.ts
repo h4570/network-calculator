@@ -13,7 +13,7 @@ describe('getSubnetMask()', () => {
 
     it('not testable', () => {
         const result = CLI.getSubnetMask(true)
-        expect(result).toBe('not_testable')
+        expect(result).toBe(0)
     })
 
 })

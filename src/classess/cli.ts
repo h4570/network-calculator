@@ -8,8 +8,8 @@ export default class CLI {
         return readlineSync.question('Enter IPV4 Address: ')
     }
 
-    public static getSubnetMask(test: boolean = false): string {
-        if (test) { return 'not_testable' }
+    public static getSubnetMask(test: boolean = false): number {
+        if (test) { return 0 }
         return readlineSync.question('Enter subnet mask: ')
     }
 
