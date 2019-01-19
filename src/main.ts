@@ -1,11 +1,6 @@
-export default class Library {
-  constructor(private foo: string) { }
+import CLI from './classess/cli'
 
-  public getFoo() {
-    return this.foo
-  }
-
-  public setFoo(foo: string) {
-    this.foo = foo
-  }
-}
+const cli = new CLI()
+const ipv4 = cli.getIPV4Address()
+const mask = cli.getSubnetMask()
+console.log(ipv4, mask)
