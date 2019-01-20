@@ -31,11 +31,28 @@ export default class Network {
     }
 
     public static calcBroadcast(ipv4: string, mask: number): string {
-        return '1'
+        const binaryIp = this.ipToBinaryArray(ipv4)
+        const fullMask = this.getFullMask(mask)
+        const binaryMask = this.ipToBinaryArray(fullMask)
+        const result: string[] = ['', '', '', '']
+        // console.log(binaryIp, binaryMask)
+
+        binaryIp.forEach((part, partIndex) => {
+            let resultSubBroadcast = ''
+
+            for (let i = 0; i < part.length; i++) {
+                if (binaryMask[partIndex][i] === '0') {
+                    resultSubBroadcast += '1'
+                } else { resultSubBroadcast += part[i] }
+            }
+            console.log(part, binaryMask[partIndex], resultSubBroadcast)
+            result[partIndex] = resultSubBroadcast
+        })
+        return this.binaryArrayToIp(result)
     }
 
     public static calcFirstAddress(ipv4: string, mask: number): string {
-        return '1'
+        return this.calcNetwork(ipv4, mask).slice(0, -1) + '1'
     }
 
     public static calcLastAddress(ipv4: string, mask: number): string {
@@ -52,19 +69,25 @@ export default class Network {
         const hostMaskOthers = mask - (hostMaskWholes * 8)
         let offset = 0
         for (; offset < hostMaskWholes; offset++) { result[offset] = '255' }
-        result[offset] = ''
-        for (let i = 0; i < hostMaskOthers; i++) { result[offset] += '1' }
-        result[offset] += '00000000'
-        result[offset] = parseInt(result[offset].substring(0, 8), 2).toString()
+        result[offset] = '00000000'
+        for (let i = 0; i < hostMaskOthers; i++) {
+            result[offset] = result[offset].substring(0, i) + '1' + result[offset].substring(i + 1)
+        }
+        result[offset] = parseInt(result[offset], 2).toString()
         return result.join('.')
     }
 
     private static ipToBinaryArray(ip: string): string[] {
         return ip.split('.').reduce((acc, element) => {
             const address: number = parseInt(element, 10)
-            acc.push(address.toString(2))
+            const result = address.toString(2)
+            acc.push(this.fixBinaryString(result))
             return acc
         }, [] as string[])
+    }
+
+    private static fixBinaryString(binary: string) {
+        return ('00000000' + binary).substring(binary.length)
     }
 
     private static binaryArrayToIp(binaryArray: string[]): string {
