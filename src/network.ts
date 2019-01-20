@@ -87,12 +87,12 @@ export default class Network {
         return ('00000000' + binary).substring(binary.length)
     }
 
-    private static maskIsValid(mask: number) {
+    private static maskIsValid(mask: number): boolean {
         return mask < 33
     }
 
-    private static ipIsValid(ip: string) {
-        return (ip.match(/,/g) || []).length === 3
+    private static ipIsValid(ip: string): boolean {
+        return (ip.match(/\./g) || []).length === 3
     }
 
 }
