@@ -15,12 +15,19 @@ export default class Network {
 
     public static calcNetwork(ipv4: string, mask: number): string {
         const binaryIp = this.ipToBinaryArray(ipv4)
-        const removeme = this.binaryArrayToIp(binaryIp)
-        console.log(binaryIp, removeme)
-        // 192.168.0.1 / 18
-        // hostMaskWholes = 2
-        // hostMaskOthers = 2
-        return '1'
+        const fullMask = this.getFullMask(mask)
+        const binaryMask = this.ipToBinaryArray(fullMask)
+        const result: string[] = ['', '', '', '']
+        binaryIp.forEach((part, partIndex) => {
+            let resultSubNetwork = ''
+            for (let i = 0; i < part.length; i++) {
+                if (binaryMask[partIndex][i] === '1') {
+                    resultSubNetwork += binaryIp[partIndex][i]
+                } else { resultSubNetwork += '0' }
+            }
+            result[partIndex] = resultSubNetwork
+        })
+        return this.binaryArrayToIp(result)
     }
 
     public static calcBroadcast(ipv4: string, mask: number): string {
