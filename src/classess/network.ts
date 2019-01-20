@@ -14,7 +14,11 @@ export default class Network {
     }
 
     public static calcNetwork(ipv4: string, mask: number): string {
-        // 192.168.0.1 / 255.255.224.0
+        // 192.168.0.1 / 18
+        // hostWholes = 2
+
+        const hostWholes = Math.floor(mask / 8)
+
         return '1'
     }
 
