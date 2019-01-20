@@ -1,7 +1,7 @@
-import Network from '../../src/classess/network'
 import NetworkCalcsDto from '../../src/dtos/networkCalcsDto'
+import Network from '../../src/network'
 
-describe('getCalcs()', () => {
+describe('getFullCalcs()', () => {
 
     it('complete test | Positive', () => {
         const expected = new NetworkCalcsDto()
@@ -11,7 +11,7 @@ describe('getCalcs()', () => {
         expected.network = '192.168.0.0'
         expected.mask = '255.255.255.0'
 
-        const result = Network.getCalcs('192.168.0.20', 24)
+        const result = Network.getFullCalcs('192.168.0.20', 24)
         expect(result).toEqual(expected)
     })
 
@@ -22,7 +22,7 @@ describe('getCalcs()', () => {
         expected.lastAddress = '192.168.0.254'
         expected.network = '192.168.0.0'
 
-        const result = Network.getCalcs('192.168.0.50', 16)
+        const result = Network.getFullCalcs('192.168.0.50', 16)
         expect(result).not.toEqual(expected)
     })
 

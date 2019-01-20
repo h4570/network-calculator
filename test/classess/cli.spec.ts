@@ -1,4 +1,4 @@
-import CLI from '../../src/classess/cli'
+import CLI from '../../src/utils/cli'
 
 describe('getIPV4Address()', () => {
 

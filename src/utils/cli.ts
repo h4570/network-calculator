@@ -5,12 +5,12 @@ export default class CLI {
 
     public static getIPV4Address(test: boolean = false): string {
         if (test) { return 'not_testable' }
-        return readlineSync.question('Enter IPV4 Address: ')
+        return readlineSync.question('Enter IPV4 Address (ex. 192.168.0.1): ')
     }
 
     public static getSubnetMask(test: boolean = false): number {
         if (test) { return 0 }
-        return readlineSync.question('Enter subnet mask: ')
+        return readlineSync.question('Enter subnet mask (ex. 24): ')
     }
 
 }
