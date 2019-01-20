@@ -19,11 +19,7 @@ export default class Network {
         console.log(binaryIp, removeme)
         // 192.168.0.1 / 18
         // hostMaskWholes = 2
-        // hostMaskOthers =
-
-        // const hostMaskWholes = Math.floor(mask / 8)
-        // const hostMaskOthers = this.getHostOthersMask(mask - hostMaskWholes)
-
+        // hostMaskOthers = 2
         return '1'
     }
 
@@ -43,6 +39,19 @@ export default class Network {
         return mask < 33
     }
 
+    private static getFullMask(mask: number): string {
+        const result = ['0', '0', '0', '0']
+        const hostMaskWholes = Math.floor(mask / 8)
+        const hostMaskOthers = mask - (hostMaskWholes * 8)
+        let offset = 0
+        for (; offset < hostMaskWholes; offset++) { result[offset] = '255' }
+        result[offset] = ''
+        for (let i = 0; i < hostMaskOthers; i++) { result[offset] += '1' }
+        result[offset] += '00000000'
+        result[offset] = parseInt(result[offset].substring(0, 8), 2).toString()
+        return result.join('.')
+    }
+
     private static ipToBinaryArray(ip: string): string[] {
         return ip.split('.').reduce((acc, element) => {
             const address: number = parseInt(element, 10)
@@ -54,8 +63,8 @@ export default class Network {
     private static binaryArrayToIp(binaryArray: string[]): string {
         return binaryArray.reduce((acc, element) => {
             const subnet = parseInt(element, 2)
-            return acc + '.' + subnet
-        }, '')
+            return acc + subnet + '.'
+        }, '').slice(0, -1)
     }
 
 }
