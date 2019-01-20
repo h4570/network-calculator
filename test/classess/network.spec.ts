@@ -1,5 +1,5 @@
 import Network from '../../src/classess/network'
-import NetworkCalcsDto from '../../src/dtos/networkCalcsDto';
+import NetworkCalcsDto from '../../src/dtos/networkCalcsDto'
 
 describe('getCalcs()', () => {
 
