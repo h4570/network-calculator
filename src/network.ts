@@ -1,9 +1,10 @@
-import NetworkCalcsDto from '../dtos/networkCalcsDto'
+import NetworkCalcsDto from './dtos/networkCalcsDto'
 
 export default class Network {
 
-    public static getCalcs(ipv4: string, mask: number): NetworkCalcsDto {
+    public static getFullCalcs(ipv4: string, mask: number): NetworkCalcsDto {
         if (!this.maskIsValid(mask)) { return new NetworkCalcsDto('illegal_mask') }
+        if (!this.ipIsValid(ipv4)) { return new NetworkCalcsDto('illegal_ip') }
 
         const result = new NetworkCalcsDto()
         result.mask = this.getFullMask(mask)
@@ -52,10 +53,6 @@ export default class Network {
         return this.calcBroadcast(binaryIp, binaryMask).slice(0, -1) + '4'
     }
 
-    public static maskIsValid(mask: number) {
-        return mask < 33
-    }
-
     public static getFullMask(mask: number): string {
         const result = ['0', '0', '0', '0']
         const hostMaskWholes = Math.floor(mask / 8)
@@ -88,6 +85,14 @@ export default class Network {
 
     private static fixBinaryString(binary: string) {
         return ('00000000' + binary).substring(binary.length)
+    }
+
+    private static maskIsValid(mask: number): boolean {
+        return mask < 33
+    }
+
+    private static ipIsValid(ip: string): boolean {
+        return (ip.match(/\./g) || []).length === 3
     }
 
 }
