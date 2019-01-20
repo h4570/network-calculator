@@ -14,10 +14,15 @@ export default class Network {
     }
 
     public static calcNetwork(ipv4: string, mask: number): string {
+        const binaryIp = this.ipToBinaryArray(ipv4)
+        const removeme = this.binaryArrayToIp(binaryIp)
+        console.log(binaryIp, removeme)
         // 192.168.0.1 / 18
-        // hostWholes = 2
+        // hostMaskWholes = 2
+        // hostMaskOthers =
 
-        const hostWholes = Math.floor(mask / 8)
+        // const hostMaskWholes = Math.floor(mask / 8)
+        // const hostMaskOthers = this.getHostOthersMask(mask - hostMaskWholes)
 
         return '1'
     }
@@ -36,6 +41,21 @@ export default class Network {
 
     public static maskIsValid(mask: number) {
         return mask < 33
+    }
+
+    private static ipToBinaryArray(ip: string): string[] {
+        return ip.split('.').reduce((acc, element) => {
+            const address: number = parseInt(element, 10)
+            acc.push(address.toString(2))
+            return acc
+        }, [] as string[])
+    }
+
+    private static binaryArrayToIp(binaryArray: string[]): string {
+        return binaryArray.reduce((acc, element) => {
+            const subnet = parseInt(element, 2)
+            return acc + '.' + subnet
+        }, '')
     }
 
 }
