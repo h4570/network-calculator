@@ -41,6 +41,11 @@
   version "8.0.19"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.19.tgz#e46e2b0243de7d03f15b26b45c59ebb84f657a4e"
 
+"@types/readline-sync@^1.4.3":
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/@types/readline-sync/-/readline-sync-1.4.3.tgz#eac55a39d5a349912062c9e5216cd550c07fd9c8"
+  integrity sha512-YP9NVli96E+qQLAF2db+VjnAUEeZcFVg4YnMgr8kpDUFwQBnj31rPLOVHmazbKQhaIkJ9cMHsZhpKdzUeL0KTg==
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -1849,6 +1854,11 @@ read-pkg@^2.0.0:
     load-json-file "^2.0.0"
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
+
+readline-sync@^1.4.9:
+  version "1.4.9"
+  resolved "https://registry.yarnpkg.com/readline-sync/-/readline-sync-1.4.9.tgz#3eda8e65f23cd2a17e61301b1f0003396af5ecda"
+  integrity sha1-PtqOZfI80qF+YTAbHwADOWr17No=
 
 regenerator-runtime@^0.10.0:
   version "0.10.5"

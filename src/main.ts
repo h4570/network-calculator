@@ -1,11 +1,10 @@
-export default class Library {
-  constructor(private foo: string) { }
+import CLI from './classess/cli'
+// import Formatter from './classess/formatter'
+import Network from './classess/network'
 
-  public getFoo() {
-    return this.foo
-  }
+const ipv4 = CLI.getIPV4Address()
+const mask = CLI.getSubnetMask()
+const calcs = Network.getCalcs(ipv4, mask)
 
-  public setFoo(foo: string) {
-    this.foo = foo
-  }
-}
+// Formatter.printNetworkResult(ipv4, mask, calcs)
+console.log(ipv4, mask, calcs)
