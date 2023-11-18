@@ -5,7 +5,7 @@
 [![Contributors][contributors-shield]][contributors-url]
 [![MIT License][license-shield]][license-url]
 
-<img src="http://apgcglz.cluster028.hosting.ovh.net/github/network-calculator/network-calc.gif" alt="Logo" width="50%" height="auto">
+<img src="https://raw.githubusercontent.com/h4570/network-calculator/master/docs/network-calc.gif" alt="Logo" width="50%" height="auto">
 
 
 ## About the project
